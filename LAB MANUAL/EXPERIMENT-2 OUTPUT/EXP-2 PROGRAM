@@ -1,0 +1,67 @@
+import csv
+
+data = [
+    ["Sky", "AirTemp", "Humidity", "Wind", "Water", "Forecast", "EnjoySport"],
+    ["Sunny", "Warm", "Normal", "Strong", "Warm", "Same", "Yes"],
+    ["Sunny", "Warm", "High", "Strong", "Warm", "Same", "Yes"],
+    ["Rainy", "Cold", "High", "Strong", "Warm", "Change", "No"],
+    ["Sunny", "Warm", "High", "Strong", "Cool", "Change", "Yes"]
+]
+
+with open("trainingdata.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+print("CSV file created successfully")
+
+
+
+
+
+import csv
+
+with open("trainingdata.csv") as file:
+    data = list(csv.reader(file))
+
+data = data[1:]
+
+n = len(data[0]) - 1
+
+for row in data:
+    if row[-1] == "Yes":
+        S = row[:-1]
+        break
+
+G = [["?"] * n]
+
+for row in data:
+
+    example = row[:-1]
+    result = row[-1]
+
+    if result == "Yes":
+
+        for i in range(n):
+            if S[i] != example[i]:
+                S[i] = "?"
+
+    else:
+
+        new_G = []
+
+        for g in G:
+            for i in range(n):
+
+                if g[i] == "?" and S[i] != example[i]:
+                    new_g = g.copy()
+                    new_g[i] = S[i]
+                    new_G.append(new_g)
+
+        G = new_G
+
+print("Specific Boundary (S):")
+print(S)
+
+print("\nGeneral Boundary (G):")
+for g in G:
+    print(g)
