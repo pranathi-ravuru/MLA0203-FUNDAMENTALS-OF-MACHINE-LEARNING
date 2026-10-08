@@ -1,0 +1,51 @@
+import numpy as np
+
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+
+Y = np.array([
+    [0],
+    [1],
+    [1],
+    [0]
+])
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+np.random.seed(1)
+
+W1 = np.random.rand(2, 2)
+W2 = np.random.rand(2, 1)
+
+lr = 0.5
+
+for i in range(10000):
+
+    H = sigmoid(np.dot(X, W1))
+    O = sigmoid(np.dot(H, W2))
+
+    error = Y - O
+
+    dO = error * O * (1 - O)
+    dH = np.dot(dO, W2.T) * H * (1 - H)
+
+    W2 = W2 + np.dot(H.T, dO) * lr
+    W1 = W1 + np.dot(X.T, dH) * lr
+
+H = sigmoid(np.dot(X, W1))
+O = sigmoid(np.dot(H, W2))
+
+print("Input   Expected   Predicted")
+
+for i in range(4):
+    if O[i][0] >= 0.5:
+        prediction = 1
+    else:
+        prediction = 0
+
+    print(X[i], "     ", Y[i][0], "          ", prediction)
