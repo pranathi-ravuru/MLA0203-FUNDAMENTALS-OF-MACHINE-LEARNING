@@ -1,0 +1,18 @@
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+X = [[1], [2], [3], [4], [5], [6], [7], [8]]
+y = ['A', 'A', 'A', 'A', 'B', 'B', 'B', 'B']
+
+model = GaussianNB()
+model.fit(X, y)
+
+y_pred = model.predict(X)
+
+print("Actual Values:", y)
+print("Predicted Values:", y_pred)
+
+print("Confusion Matrix:")
+print(confusion_matrix(y, y_pred, labels=['A', 'B']))
+
+print("Accuracy:", accuracy_score(y, y_pred) * 100, "%")
