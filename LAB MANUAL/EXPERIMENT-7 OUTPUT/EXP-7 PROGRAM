@@ -1,0 +1,13 @@
+from sklearn.linear_model import LogisticRegression
+
+X = [[1], [2], [3], [4], [5], [6]]
+y = [0, 0, 0, 1, 1, 1]
+
+model = LogisticRegression()
+model.fit(X, y)
+
+result = model.predict([[4]])
+
+print("Input:", 4)
+print("Predicted Class:", result[0])
+print("Accuracy:", model.score(X, y) * 100, "%")
