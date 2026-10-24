@@ -1,0 +1,28 @@
+from sklearn.tree import DecisionTreeClassifier
+
+X = [
+    [50000, 10000, 1],
+    [60000, 15000, 1],
+    [25000, 20000, 0],
+    [30000, 25000, 0],
+    [80000, 10000, 1],
+    [20000, 18000, 0]
+]
+
+# Credit score classes: 1 = Good, 0 = Poor
+y = [1, 1, 0, 0, 1, 0]
+
+model = DecisionTreeClassifier(random_state=0)
+model.fit(X, y)
+
+new_person = [[55000, 12000, 1]]
+result = model.predict(new_person)
+
+print("Income:", new_person[0][0])
+print("Debt:", new_person[0][1])
+print("Payment History:", new_person[0][2])
+
+if result[0] == 1:
+    print("Credit Score: Good")
+else:
+    print("Credit Score: Poor")
