@@ -1,0 +1,29 @@
+from sklearn.linear_model import LinearRegression
+
+X = [
+    [2015, 50000, 9],
+    [2016, 45000, 8],
+    [2017, 40000, 7],
+    [2018, 35000, 6],
+    [2019, 30000, 5],
+    [2020, 25000, 4],
+    [2021, 20000, 3],
+    [2022, 15000, 2]
+]
+
+y = [4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5]
+
+model = LinearRegression()
+model.fit(X, y)
+
+new_car = [[2021, 22000, 3]]
+
+result = model.predict(new_car)
+
+accuracy = model.score(X, y)
+
+print("Manufacturing Year:", new_car[0][0])
+print("Mileage:", new_car[0][1], "km")
+print("Car Age:", new_car[0][2], "years")
+print("Predicted Car Price:", round(result[0], 2), "Lakhs")
+print("Accuracy:", round(accuracy * 100, 2), "%")
