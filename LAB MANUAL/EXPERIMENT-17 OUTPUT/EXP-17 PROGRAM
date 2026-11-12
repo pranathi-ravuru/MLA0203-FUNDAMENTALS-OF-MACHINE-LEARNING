@@ -1,0 +1,31 @@
+from sklearn.tree import DecisionTreeClassifier
+
+X = [
+    [2, 3000, 32, 5],
+    [3, 3500, 32, 5],
+    [4, 4000, 64, 6],
+    [6, 4500, 128, 6],
+    [8, 5000, 128, 6],
+    [12, 6000, 256, 7]
+]
+
+y = [0, 0, 1, 1, 2, 2]
+
+model = DecisionTreeClassifier()
+model.fit(X, y)
+
+new_mobile = [[8, 5000, 128, 6]]
+
+result = model.predict(new_mobile)
+
+print("RAM:", new_mobile[0][0], "GB")
+print("Battery:", new_mobile[0][1], "mAh")
+print("Internal Memory:", new_mobile[0][2], "GB")
+print("Screen Size:", new_mobile[0][3], "inches")
+
+if result[0] == 0:
+    print("Mobile Price Range: Low")
+elif result[0] == 1:
+    print("Mobile Price Range: Medium")
+else:
+    print("Mobile Price Range: High")
