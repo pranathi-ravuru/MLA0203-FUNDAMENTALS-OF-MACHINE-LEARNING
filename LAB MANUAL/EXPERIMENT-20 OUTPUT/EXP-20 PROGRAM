@@ -1,0 +1,10 @@
+from sklearn.linear_model import LinearRegression
+X = [[1], [2], [3], [4], [5], [6]]
+y = [10000, 12000, 15000, 18000, 20000, 23000]
+model = LinearRegression()
+model.fit(X, y)
+future_month = [[7]]
+prediction = model.predict(future_month)
+print("Future Month:", future_month[0][0])
+print("Predicted Future Sales: Rs.", round(prediction[0], 2))
+print("Model Accuracy:", round(model.score(X, y) * 100, 2), "%")
